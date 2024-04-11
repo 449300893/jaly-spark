@@ -570,6 +570,7 @@ class SparkContext(config: SparkConf) extends Logging {
     _plugins = PluginContainer(this, _resources.asJava)
 
     // Create and start the scheduler
+    //point  标记1用来记录SparkContext.createTaskScheduler
     val (sched, ts) = SparkContext.createTaskScheduler(this, master)
     _schedulerBackend = sched
     _taskScheduler = ts
@@ -2949,7 +2950,7 @@ object SparkContext extends Logging {
         val backend = new LocalSchedulerBackend(sc.getConf, scheduler, threadCount)
         scheduler.initialize(backend)
         (backend, scheduler)
-
+      // 这里使用的是spark standalone提交
       case SPARK_REGEX(sparkUrl) =>
         val scheduler = new TaskSchedulerImpl(sc)
         val masterUrls = sparkUrl.split(",").map("spark://" + _)

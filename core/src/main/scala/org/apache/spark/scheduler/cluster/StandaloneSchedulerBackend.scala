@@ -117,6 +117,8 @@ private[spark] class StandaloneSchedulerBackend(
       }
     val executorResourceReqs = ResourceUtils.parseResourceRequirements(conf,
       config.SPARK_EXECUTOR_PREFIX)
+//     point 这里需要标记应用程序desc
+
     val appDesc = ApplicationDescription(sc.appName, maxCores, sc.executorMemory, command,
       webUrl, sc.eventLogDir, sc.eventLogCodec, coresPerExecutor, initialExecutorLimit,
       resourceReqsPerExecutor = executorResourceReqs)

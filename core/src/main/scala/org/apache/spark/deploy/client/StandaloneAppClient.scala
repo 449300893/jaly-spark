@@ -35,6 +35,13 @@ import org.apache.spark.scheduler.ExecutorDecommissionInfo
 import org.apache.spark.util.{RpcUtils, ThreadUtils}
 
 /**
+ * point 负责为application与spark集群进行通信
+ * point 它会接收一个spark url,以及applicationDESC和一个集群事件的监听器。以及个事件发生的回调函数。
+  */
+
+
+
+/**
  * Interface allowing applications to speak with a Spark standalone cluster manager.
  *
  * Takes a master URL, an app description, and a listener for cluster events, and calls

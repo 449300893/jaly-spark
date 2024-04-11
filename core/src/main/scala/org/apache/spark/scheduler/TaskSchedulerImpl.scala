@@ -40,6 +40,13 @@ import org.apache.spark.storage.BlockManagerId
 import org.apache.spark.util.{AccumulatorV2, Clock, SystemClock, ThreadUtils, Utils}
 
 /**
+ * 1、底层启动SchedulerBackend,调度不同类型的cluster
+ * 2、也可以在启动：LocalBackend，将islocal设置为true，本地模式下调度
+ * 3、负责处理一些通用的逻辑，比如多个JOb的调度顺序。
+ * 4、客户端首先应该调用他的initialize（）方法和start（）方法，然后通过runTasks()提交task set
+ */
+
+/**
  * Schedules tasks for multiple types of clusters by acting through a SchedulerBackend.
  * It can also work with a local setup by using a `LocalSchedulerBackend` and setting
  * isLocal to true. It handles common logic, like determining a scheduling order across jobs, waking
